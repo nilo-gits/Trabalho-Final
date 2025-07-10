@@ -16,8 +16,8 @@ gravar.addEventListener('click', (e) => {
     status: statusInput.value, 
     nomeAluno: nomeAluno.value,
     nomeProfessor: nomeProfessor.value,
-    aluno_cod: aluno_id.value,
-    professor_cod: professor_id.value
+    aluno_cod: aluno_cod.value,
+    professor_cod: professor_cod.value
   }
 
   console.log(valores)

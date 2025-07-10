@@ -1,4 +1,5 @@
 
+
 let res = document.getElementById('res')
 let gravar = document.getElementById('gravar')
 let busca = document.getElementById('busca')
@@ -8,14 +9,16 @@ gravar.addEventListener('click', (e) => {
   let statusInput = document.getElementById('status')
 
   const valores = {
-    dataSolicitacao: dataSolicitacao.value,
-    horaSaida: horaSaida.value,
-    horaRetorno: horaRetorno.value,
+    dataSolicitacao : dataSolicitacao.value,
+    horaSaida : horaSaida.value,
+    horaRetorno : horaRetorno.value,
     motivo: motivo.value,
     localDestino: localDestino.value,
     status: statusInput.value, 
     nomeAluno: nomeAluno.value,
-    nomeProfessor: nomeProfessor.value
+    nomeProfessor: nomeProfessor.value,
+    aluno_cod: aluno_id.value,
+    professor_cod: professor_id.value
   }
 
   console.log(valores)
@@ -36,9 +39,9 @@ gravar.addEventListener('click', (e) => {
   console.log(dadosGrav)
   res.innerHTML = `` 
 
-res.innerHTML += `Motivo: ${dadosGrav.dataSolicitacao} <br>`
-res.innerHTML += `Motivo: ${dadosGrav.horaSaida} <br>`
-res.innerHTML += `Motivo: ${dadosGrav.horaRetorno} <br>`
+res.innerHTML += `Data de Solicitacao: ${dadosGrav.dataSolicitacao} <br>`
+res.innerHTML += `Hora de Saida: ${dadosGrav.horaSaida} <br>`
+res.innerHTML += `Hora de Retorno: ${dadosGrav.horaRetorno} <br>`
 res.innerHTML += `Motivo: ${dadosGrav.motivo} <br>`
 res.innerHTML += `Local de destino: ${dadosGrav.localDestino} <br>`
 res.innerHTML += `status: ${dadosGrav.status} <br>`

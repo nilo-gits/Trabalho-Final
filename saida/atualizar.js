@@ -22,11 +22,11 @@ checar.addEventListener('click', (e) => {
       dataSolicitacao.value = dado.dataSolicitacao
       horaSaida.value = dado.horaSaida
       horaRetorno.value = dado.horaRetorno
-      motivo.value = dado.motivo  
-      localDestino.value = dado.localDestino 
-      status.value = dado.status 
+      motivo.value = dado.motivo
+      localDestino.value = dado.localDestino
+      status.value = dado.status
       nomeAluno.value = dado.nomeAluno
-      nomeProfessor.value = dado.nomeProfessor 
+      nomeProfessor.value = dado.nomeProfessor
 
     })
     .catch(err => {
@@ -36,47 +36,51 @@ checar.addEventListener('click', (e) => {
 })
 
 gravar.addEventListener('click', (e) => {
-    e.preventDefault()
-    
-    let dataSolicitacao = document.getElementById('dataSolicitacao')
-    let horaSaida = document.getElementById('horaSaida')
-    let horaRetorno = document.getElementById('horaRetorno')
-    let motivo = document.getElementById('motivo')
-    let localDestino = document.getElementById('localDestino')
-    let statusInput = document.getElementById('status')
-    let nomeAluno = document.getElementById('nomeAluno')
-    let nomeProfessor = document.getElementById('nomeProfessor')
+  e.preventDefault()
 
-    const codSaida = Number(document.getElementById('codSaida').value)
-  
-   const dadosAtualizados = {
-  dataSolicitacao: dataSolicitacao.value,
-  horaSaida: horaSaida.value,
-  horaRetorno: horaRetorno.value,
-  motivo: motivo.value,
-  localDestino: localDestino.value,
-  status: statusInput.value,
-  nomeAluno: nomeAluno.value,
-  nomeProfessor: nomeProfessor.value,
-  aluno_cod: Number(document.getElementById('aluno_id').value),
-  professor_cod: Number(document.getElementById('professor_id').value)
-}
-  
-    fetch(`http://localhost:8081/saida/${codSaida}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dadosAtualizados)
+  let dataSolicitacao = document.getElementById('dataSolicitacao')
+  let horaSaida = document.getElementById('horaSaida')
+  let horaRetorno = document.getElementById('horaRetorno')
+  let motivo = document.getElementById('motivo')
+  let localDestino = document.getElementById('localDestino')
+  let statusInput = document.getElementById('status')
+  let nomeAluno = document.getElementById('nomeAluno')
+  let nomeProfessor = document.getElementById('nomeProfessor')
+
+  // nomeProfessor.dataset.codProfessor
+
+  const codSaida = Number(document.getElementById('codSaida').value)
+
+  const dadosAtualizados = {
+    dataSolicitacao: dataSolicitacao.value,
+    horaSaida: horaSaida.value,
+    horaRetorno: horaRetorno.value,
+    motivo: motivo.value,
+    localDestino: localDestino.value,
+    status: statusInput.value,
+    nomeAluno: nomeAluno.value,
+    nomeProfessor: nomeProfessor.value,
+    aluno_cod: Number(document.getElementById('aluno_id').value),
+    professor_cod: Number(document.getElementById('professor_id').value)
+  }
+
+  fetch(`http://localhost:8081/saida/${codSaida}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dadosAtualizados)
+  })
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error(`Erro ao atualizar o produto (HTTP ${resp.status})`)
+      }
+      return resp.json()
     })
-      .then(resp => {
-        if (!resp.ok) {
-          throw new Error(`Erro ao atualizar o produto (HTTP ${resp.status})`)
-        }
-        return resp.json()
-      })
-      .then(saida => {
-        res.innerHTML = `
+    .then(saida => {
+
+
+      res.innerHTML = `
           
            Data de Solicitação: ${saida.dataSolicitacao}<br>
            Hora de Saida: ${saida.horaSaida}<br>
@@ -88,12 +92,11 @@ gravar.addEventListener('click', (e) => {
            Nome do professor: ${saida.nomeProfessor}<br>
             <br>    
         `
-        console.log('Produto atualizado:', saida)
-        res.innerHTML = `Produto com ID ${codSaida} atualizado com sucesso!`
-      })
-      .catch(err => {
-        console.error('Erro ao atualizar o produto:', err)
-        res.innerHTML = `Erro ao atualizar: ${err.message}`
-      })
-  })
-  
+      console.log('Produto atualizado:', saida)
+      res.innerHTML = `Produto com ID ${codSaida} atualizado com sucesso!`
+    })
+    .catch(err => {
+      console.error('Erro ao atualizar o produto:', err)
+      res.innerHTML = `Erro ao atualizar: ${err.message}`
+    })
+})

@@ -6,6 +6,7 @@
     <title>Banheiro</title>
     <link rel="icon" href="wc_400dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <script src="filaVirtual.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -48,15 +49,27 @@
       </div>
   
       <div class="conteudo">
+        <select id="listaOnline">
+          <option value="todos">Todos</option>
+          <option value="pendente">Pendentes</option>
+          <option value="aprovado">Fora de sala</option>
+          <option value="finalizado">Finalizados</option>
+          <option value="rejeitado">Rejeitados</option>
+        </select>
+      
+        
+      
+        
+      </select><br>
+      <br>
+      <br>
+      <button id="listar">LISTAR</button>
+        
         <h1>ORDEM</h1>
-        <div class="ordem-box">
-          <div class="caixa"></div>
-          <div class="caixa"></div>
-          <div class="caixa"></div>
-          <div class="caixa"></div>
-          <div class="caixa"></div>
+        <div class="resposta">
+          <h2>RESPOSTA:</h2>
+          <div id="res" class="res">Carregando...</div>
         </div>
       </div>
-    </div>
   </body>
 </html>
